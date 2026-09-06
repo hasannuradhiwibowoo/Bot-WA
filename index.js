@@ -30,6 +30,20 @@ const BLACKLIST = [
     "negro",
     "ireng",
     "jawir",
+    "memek",
+    "anjeng",
+    "jancok",
+    "babik",
+    "ngentod",
+    "asu",
+    "njing",
+    "bajingan",
+    "bangsat",
+    "bgst",
+    "tempek",
+    "taik",
+    "tolol",
+    "tai",
 ];
 
 const warnings = new Map();
@@ -172,7 +186,7 @@ const COMMANDS = [
         desc: "Cek bot online",
 
         handler: async ({ sock, message }) => {
-            await reply(sock, message, "Pong!");
+            await reply(sock, message, "Hello World!");
         },
     },
 
