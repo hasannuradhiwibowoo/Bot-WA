@@ -204,7 +204,8 @@ const COMMANDS = [
         desc: "Menampilkan daftar perintah",
 
         handler: async ({ sock, message }) => {
-            const list = COMMANDS
+            const visibleCommands = COMMANDS.filter((c) => !c.hidden);
+            const list = visibleCommands
                 .map((c, i) => `${i + 1}. *${PREFIX}${c.name}* - ${c.desc}`)
                 .join("\n");
 
@@ -231,6 +232,18 @@ const COMMANDS = [
                 `Nomor: ${OWNER_NUMBER}\n\n` +
                 `Untuk pertanyaan atau kerjasama, hubungi pemilik di atas.`;
 
+            await reply(sock, message, text);
+        },
+    },
+
+    {
+        name: "badword",
+        desc: "Menampilkan daftar kata terlarang",
+        hidden: true,
+
+        handler: async ({ sock, message }) => {
+            const list = BLACKLIST.map((w, i) => `${i + 1}. ${w}`).join("\n");
+            const text = `*DAFTAR KATA TERLARANG (${BLACKLIST.length})*\n\n${list}`;
             await reply(sock, message, text);
         },
     },
