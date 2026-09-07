@@ -195,7 +195,7 @@ const COMMANDS = [
         desc: "Tes perintah",
 
         handler: async ({ sock, message }) => {
-            await reply(sock, message, "tol");
+            await reply(sock, message, "tolmugede");
         },
     },
 
