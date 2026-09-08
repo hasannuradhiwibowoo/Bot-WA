@@ -5,6 +5,8 @@ const {
     downloadMediaMessage,
 } = require("@whiskeysockets/baileys");
 
+const axios = require("axios");
+
 const p = require("pino");
 const qrcode = require("qrcode-terminal");
 const sharp = require("sharp");
@@ -61,6 +63,8 @@ const QUOTES = [
     "Sabar itu pahit, tapi buahnya manis.",
     "kontolodon 😹"
 ];
+
+
 
 
 
@@ -409,6 +413,8 @@ const COMMANDS = [
             }
         },
     },
+
+    
 ];
 
 
@@ -652,27 +658,28 @@ async function startBot() {
                 }
             }
 
-            if (!text || !text.startsWith(PREFIX)) {
+            if (!text) {
                 return;
             }
 
+            let command;
+            let args;
 
-            const parts =
-                text
+            if (text.startsWith(PREFIX)) {
+                command = text
                     .slice(PREFIX.length)
                     .trim()
-                    .split(/ +/);
-
-
-            const command =
-                parts[0].toLowerCase();
-
-
-            const args =
-                parts
+                    .split(/ +/)[0]
+                    .toLowerCase();
+                args = text
+                    .slice(PREFIX.length)
+                    .trim()
+                    .split(/ +/)
                     .slice(1)
                     .join(" ");
-
+            } else {
+                return;
+            }
 
             const cmd =
                 commandMap[command];
